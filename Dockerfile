@@ -14,7 +14,7 @@ RUN yum -y install gcc
 RUN yum -y install gcc-c++
 
 ###### jdk 1.8
-RUN yum -y install java-1.8.0-openjdk.x86_64
+RUN yum -y install java-1.8.0-openjdk-devel.x86_64
 
 CMD /bin/bash
 
