@@ -23,10 +23,7 @@ RUN yum -y install gcc && \
 ###### jdk 1.8
 RUN yum -y install java-1.8.0-openjdk-devel.x86_64
 
-##### service
-RUN /usr/sbin/sshd
-
 EXPOSE 22
 
-CMD /bin/bash
+CMD /usr/sbin/sshd
 
