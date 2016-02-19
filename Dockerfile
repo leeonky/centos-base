@@ -1,4 +1,4 @@
-FROM centos:7.2.1511
+FROM daocloud.io/centos:7.2.1511
 
 ###### add user devuser
 RUN ( printf 'devuser\ndevuser\n' | passwd ) && \
