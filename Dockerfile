@@ -8,7 +8,6 @@ RUN ( printf 'devuser\ndevuser\n' | passwd ) && \
 
 ###### install basic tools
 RUN yum -y install wget && \
-	yum -y install gtk2 && \
 	yum -y install net-tools.x86_64 && \
 	yum -y install openssh-server.x86_64 && \
 	ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N "" && \
@@ -24,11 +23,9 @@ RUN yum -y install gcc && \
 ###### jdk 1.8
 RUN yum -y install java-1.8.0-openjdk-devel.x86_64
 
-###### ruby
+###### rvh /usr/local/rvm/bin/rvm
 RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 && \
 	( curl -sSL https://get.rvm.io | bash -s stable )
-
-RUN /usr/local/rvm/bin/rvm list known
 
 EXPOSE 22
 
