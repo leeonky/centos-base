@@ -9,6 +9,7 @@ RUN ( printf 'devuser\ndevuser\n' | passwd ) && \
 ###### install basic tools
 RUN yum -y install wget && \
 	yum -y install net-tools.x86_64 && \
+	yum -y install glibc.i686 && \
 	yum -y install openssh-server.x86_64 && \
 	ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N "" && \
 	ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N "" && \
