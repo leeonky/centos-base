@@ -4,14 +4,15 @@ FROM daocloud.io/centos:7.2.1511
 RUN ( printf 'devuser\ndevuser\n' | passwd ) && \
 	useradd devuser && \
 	( printf 'devuser\ndevuser\n' | passwd devuser ) && \
-	( echo 'devuser    ALL=(ALL)       NOPASSWD:ALL' > /etc/sudoers.d/devuser )
+	yum -y install sudo && \
+	( echo 'devuser    ALL=(ALL)       NOPASSWD:ALL' > /etc/sudoers.d/devuser ) && \
+	sed 's/^Defaults \{1,\}requiretty'//g -i /etc/sudoers
 
 
 ###### install basic tools
 RUN yum -y install wget && \
 	yum -y install which && \
 	yum -y install net-tools.x86_64 && \
-	yum -y install sudo
 	yum -y install glibc.i686
 
 ###### ssh server and client
