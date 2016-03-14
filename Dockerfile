@@ -22,13 +22,6 @@ RUN yum -y install openssh-server.x86_64 && \
 	ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N "" && \
 	yum -y install openssh-clients.x86_64
 
-###### gnu c c++
-RUN yum -y install gcc && \
-	yum -y install gcc-c++
-
-###### jdk 1.8
-RUN yum -y install java-1.8.0-openjdk-devel.x86_64
-
 EXPOSE 22
 
 USER devuser
