@@ -12,6 +12,7 @@ RUN ( printf 'devuser\ndevuser\n' | passwd ) && \
 ###### install basic tools
 RUN yum -y install wget && \
 	yum -y install which && \
+	yum -y install ack && \
 	yum -y install net-tools.x86_64 && \
 	yum -y install glibc.i686
 
