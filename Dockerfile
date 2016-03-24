@@ -1,3 +1,5 @@
+# centos7 with some basic tools
+
 FROM daocloud.io/centos:7.2.1511
 
 ###### add user devuser
@@ -10,11 +12,7 @@ RUN ( printf 'devuser\ndevuser\n' | passwd ) && \
 
 
 ###### install basic tools
-RUN yum -y install wget && \
-	yum -y install which && \
-	yum -y install ack && \
-	yum -y install net-tools.x86_64 && \
-	yum -y install glibc.i686
+RUN yum -y install wget which net-tools.x86_64 glibc.i686 xdg-utils
 
 ###### ssh server and client
 RUN yum -y install openssh-server.x86_64 && \
