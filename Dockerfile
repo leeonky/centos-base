@@ -10,6 +10,9 @@ RUN ( printf 'devuser\ndevuser\n' | passwd ) && \
 	( echo 'devuser    ALL=(ALL)       NOPASSWD:ALL' > /etc/sudoers.d/devuser ) && \
 	sed 's/^Defaults \{1,\}requiretty'//g -i /etc/sudoers
 
+###### set LANG
+RUN echo 'export LANG=en_US.utf8' > /etc/profile.d/lang.sh
+
 ###### EPEL repository
 RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 
