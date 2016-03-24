@@ -30,8 +30,7 @@ RUN yum -y install openssh-server.x86_64 openssh-clients.x86_64  && \
 	ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""
 
 EXPOSE 22
-
 USER devuser
-
+ENV DEV_HOME /home/devuser
 CMD /usr/sbin/sshd -D
 
