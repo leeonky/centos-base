@@ -35,5 +35,5 @@ RUN echo 'export LANG=en_US.utf8' > /etc/profile.d/lang.sh
 EXPOSE 22
 USER devuser
 ENV DEV_HOME /home/devuser
-CMD /usr/sbin/sshd -D
+CMD sudo /usr/sbin/sshd -D
 
