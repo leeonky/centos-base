@@ -12,14 +12,19 @@ RUN ( printf 'devuser\ndevuser\n' | passwd ) && \
 
 
 ###### install basic tools
-RUN yum -y install wget which net-tools.x86_64 glibc.i686 xdg-utils
+RUN yum -y install \
+	wget \
+	perl \
+	which \
+	net-tools.x86_64 \
+	glibc.i686 \
+	xdg-utils
 
 ###### ssh server and client
-RUN yum -y install openssh-server.x86_64 && \
+RUN yum -y install openssh-server.x86_64 openssh-clients.x86_64  && \
 	ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N "" && \
 	ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N "" && \
-	ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N "" && \
-	yum -y install openssh-clients.x86_64
+	ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""
 
 EXPOSE 22
 
