@@ -10,11 +10,14 @@ RUN ( printf 'devuser\ndevuser\n' | passwd ) && \
 	( echo 'devuser    ALL=(ALL)       NOPASSWD:ALL' > /etc/sudoers.d/devuser ) && \
 	sed 's/^Defaults \{1,\}requiretty'//g -i /etc/sudoers
 
+###### EPEL repository
+RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 
 ###### install basic tools
 RUN yum -y install \
 	wget \
 	perl \
+	ack \
 	which \
 	net-tools.x86_64 \
 	glibc.i686 \
