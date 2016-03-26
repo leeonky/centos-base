@@ -23,17 +23,19 @@ RUN yum -y install openssh-server.x86_64 openssh-clients.x86_64  && \
 	ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""
 
 ###### add user devuser
+ENV DEV_HOME /home/devuser
 RUN ( printf 'devuser\ndevuser\n' | passwd ) && \
 	useradd devuser && \
 	( printf 'devuser\ndevuser\n' | passwd devuser ) && \
 	( echo 'devuser    ALL=(ALL)       NOPASSWD:ALL' > /etc/sudoers.d/devuser ) && \
-	sed 's/^Defaults \{1,\}requiretty'//g -i /etc/sudoers
+	sed 's/^Defaults \{1,\}requiretty'//g -i /etc/sudoers && \
+	mkdir -p $DEV_HOME/bin && \
+	chown devuser:devuser $DEV_HOME/bin
 
 ###### set LANG
 RUN echo 'export LANG=en_US.utf8' > /etc/profile.d/lang.sh
 
 EXPOSE 22
 USER devuser
-ENV DEV_HOME /home/devuser
 CMD sudo /usr/sbin/sshd -D
 
