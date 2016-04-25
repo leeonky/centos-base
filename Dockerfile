@@ -33,12 +33,10 @@ RUN ( printf 'devuser\ndevuser\n' | passwd ) && \
 	mkdir -p $DEV_HOME/bin && \
 	chown devuser:devuser $DEV_HOME/bin
 
-###### set LANG
 ADD lang.sh /etc/profile.d/
 
 ###### enable .bashrc.d
 RUN echo 'for f in ~/.bashrc.d/*; do source $f; done' >> $DEV_HOME/.bashrc
-ADD bashrc.d $DEV_HOME/.bashrc.d
 
 EXPOSE 22
 USER devuser
