@@ -34,11 +34,12 @@ RUN ( printf 'devuser\ndevuser\n' | passwd ) && \
 	chown devuser:devuser $DEV_HOME/bin
 
 ADD lang.sh /etc/profile.d/
+USER devuser
 
 ###### enable .bashrc.d
-RUN echo 'for f in ~/.bashrc.d/*; do source $f; done' >> $DEV_HOME/.bashrc
+RUN echo 'for f in $(ls ~/.bashrc.d/); do source ~/.bashrc.d/$f; done' >> $DEV_HOME/.bashrc && \
+	mkdir -p $DEV_HOME/.bashrc.d
 
 EXPOSE 22
-USER devuser
 CMD sudo /usr/sbin/sshd -D
 
