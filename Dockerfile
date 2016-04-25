@@ -14,7 +14,8 @@ RUN yum -y install \
 	which \
 	net-tools.x86_64 \
 	glibc.i686 \
-	xdg-utils
+	xdg-utils \
+	bash-completion
 
 ###### ssh server and client
 RUN yum -y install openssh-server.x86_64 openssh-clients.x86_64  && \
@@ -33,7 +34,11 @@ RUN ( printf 'devuser\ndevuser\n' | passwd ) && \
 	chown devuser:devuser $DEV_HOME/bin
 
 ###### set LANG
-RUN echo 'export LANG=en_US.utf8' > /etc/profile.d/lang.sh
+ADD lang.sh /etc/profile.d/
+
+###### enable .bashrc.d
+RUN echo 'for f in ~/.bashrc.d/*; do source $f; done' >> $DEV_HOME/.bashrc
+ADD bashrc.d $DEV_HOME/.bashrc.d
 
 EXPOSE 22
 USER devuser
