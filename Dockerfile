@@ -15,7 +15,8 @@ RUN yum -y install \
 	net-tools.x86_64 \
 	glibc.i686 \
 	xdg-utils \
-	bash-completion
+	bash-completion \
+	unzip.x86_64 mount.nfs
 
 ###### ssh server and client
 RUN yum -y install openssh-server.x86_64 openssh-clients.x86_64  && \
